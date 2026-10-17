@@ -15,6 +15,7 @@ Releases, and what works on them, are in [lineageos-gold](https://github.com/Sta
 | `kernel/xiaomi/gold-mediatek_modules` | [MediaTek's connectivity, GPU, fpsgo, MET and scheduler modules](https://github.com/Star-caorui/android_kernel_xiaomi_gold-mediatek_modules/tree/lineage-24.0), from Xiaomi's release, cut down to what gold builds; `gold-kernel-source` group only |
 | `vendor/xiaomi/gold` | the [proprietary files](https://github.com/Star-caorui/android_vendor_xiaomi_gold/tree/lineage-24.0) |
 | `device/mediatek/sepolicy_vndr`, `hardware/mediatek`, `hardware/xiaomi` | LineageOS |
+| `lineage-sdk`, `packages/apps/Updater`, `packages/modules/Bluetooth` | LineageOS's, with one change each that is under review on LineageOS's Gerrit ([508379](https://review.lineageos.org/c/LineageOS/android_lineage-sdk/+/508379), [508380](https://review.lineageos.org/c/LineageOS/android_packages_apps_Updater/+/508380), [508408](https://review.lineageos.org/c/LineageOS/android_packages_modules_Bluetooth/+/508408)), from our forks until it is merged |
 
 ## Building
 
