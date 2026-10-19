@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+  <remote name="gold" fetch="https://github.com/Star-caorui" />
+
+  <project name="android_device_xiaomi_gold" path="device/xiaomi/gold" remote="gold" revision="lineage-23.2" />
+  <project name="android_device_xiaomi_gold-kernels" path="device/xiaomi/gold-kernel" remote="gold" revision="lineage-23.2" clone-depth="1" />
+  <project name="android_vendor_xiaomi_gold" path="vendor/xiaomi/gold" remote="gold" revision="lineage-23.2" clone-depth="1" />
+
+  <project name="LineageOS/android_device_mediatek_sepolicy_vndr" path="device/mediatek/sepolicy_vndr" />
+  <project name="LineageOS/android_hardware_mediatek" path="hardware/mediatek" />
+  <project name="LineageOS/android_hardware_xiaomi" path="hardware/xiaomi" />
+</manifest>
