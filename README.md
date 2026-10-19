@@ -35,13 +35,7 @@ From Xiaomi's stock package. Which one, how to check the files against it and ho
 
 ## Build hosts with little RAM
 
-`host/build.sh` in [lineageos-gold](https://github.com/Star-caorui/lineageos-gold/tree/main/host) is what we use on an 8-core, 16 GB machine. Run it from the top of the Android tree, or set `SOURCE_TREE`. It does the same as the steps above, turns on ccache if it is installed, and applies one local patch. A host with enough memory does not need it.
-
-- `soong-memory-env.patch` (`build/soong`): passes `GOGC` and `GOMEMLIMIT` through to soong_build. The script sets them to 50 and 10GiB unless the environment says otherwise, which keeps soong_build at 20 to 23 GB.
-
-Restore the project before `repo sync`: `git -C build/soong checkout .`
-
-The part of soong_build that does not fit in RAM is swapped, and where it goes decides how long Soong's analysis takes. With the defaults of Ubuntu 24.04 (kernel 6.8) the analysis took 2 h 45 min to 3 h 25 min on that machine. With the swapped pages kept compressed in memory it took 15 minutes:
+The part of soong_build that does not fit in RAM is swapped, and where it goes decides how long Soong's analysis takes. With the defaults of Ubuntu 24.04 (kernel 6.8) the analysis took 2 h 45 min to 3 h 25 min on an 8-core, 16 GB machine. With the swapped pages kept compressed in memory it took 15 minutes:
 
 ```
 echo zsmalloc > /sys/module/zswap/parameters/zpool
