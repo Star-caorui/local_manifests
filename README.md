@@ -43,8 +43,6 @@ breakfast gold userdebug
 m bacon
 ```
 
-The DTBO is stock's either way; the DTB is built from source.
-
 ## Where the kernel and the proprietary files come from
 
 The kernel image and the GKI modules are Google's builds. The vendor modules, the device tree blob and its overlay are built from source; the [`OS3.0.5.0.VNQMIXM`](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest/tree/OS3.0.5.0.VNQMIXM) branch of android_kernel_xiaomi_gold_manifest shows they give stock's modules, DTB and DTBO, byte for byte. The proprietary files are from Xiaomi's stock package; which one, how to check the files against it and how to make them yourself is in the README of [android_vendor_xiaomi_gold](https://github.com/Star-caorui/android_vendor_xiaomi_gold/tree/lineage-24.0#readme).
