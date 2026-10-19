@@ -9,7 +9,6 @@ Releases, and what works on them, are in [lineageos-gold](https://github.com/Sta
 | Path | Repository |
 | --- | --- |
 | `device/xiaomi/gold` | the [device tree](https://github.com/Star-caorui/android_device_xiaomi_gold/tree/lineage-24.0) |
-| `device/xiaomi/gold-kernels` | the [DTBO and module lists of the kernel](https://github.com/Star-caorui/android_device_xiaomi_gold-kernels/tree/lineage-24.0); `build-kernel.sh` adds the modules, the device tree blob and the kernel image |
 | `vendor/xiaomi/gold` | the [proprietary files](https://github.com/Star-caorui/android_vendor_xiaomi_gold/tree/lineage-24.0) |
 | `device/mediatek/sepolicy_vndr`, `hardware/mediatek`, `hardware/xiaomi` | LineageOS |
 | `lineage-sdk`, `packages/apps/Updater`, `packages/modules/Bluetooth` | LineageOS's, with one change each that is under review on LineageOS's Gerrit ([508379](https://review.lineageos.org/c/LineageOS/android_lineage-sdk/+/508379), [508380](https://review.lineageos.org/c/LineageOS/android_packages_apps_Updater/+/508380), [508408](https://review.lineageos.org/c/LineageOS/android_packages_modules_Bluetooth/+/508408)), from our forks until it is merged |
@@ -31,7 +30,7 @@ m bacon
 
 The output is in `out/target/product/gold/`.
 
-`build-kernel.sh` builds the vendor kernel modules from source and fetches Google's GKI builds, as LineageOS's `build_kernel` does for the devices whose kernel manifests it hosts: it syncs [android_kernel_xiaomi_gold_manifest](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest#readme) into `out-kernel/gold` and puts the result into `device/xiaomi/gold-kernels`. Run it again after a sync, before building; `SKIP_KERNEL_SYNC=1` builds without syncing the kernel sources first. It needs to reach `android.googlesource.com` and `ci.android.com`.
+`build-kernel.sh` builds the vendor kernel modules, the device tree blob and its overlay from source and fetches Google's GKI builds, as LineageOS's `build_kernel` does for the devices whose kernel manifests it hosts: it syncs [android_kernel_xiaomi_gold_manifest](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest#readme) into `out-kernel/gold` and puts the result into `device/xiaomi/gold-kernels`. Run it again after a sync, before building; `SKIP_KERNEL_SYNC=1` builds without syncing the kernel sources first. It needs to reach `android.googlesource.com` and `ci.android.com`.
 
 ## Choosing the kernel
 
@@ -48,4 +47,4 @@ The DTBO is stock's either way; the DTB is built from source.
 
 ## Where the kernel and the proprietary files come from
 
-The kernel image and the GKI modules are Google's builds. The vendor modules and the device tree blob are built from the sources stock's are built from; the [`OS3.0.5.0.VNQMIXM`](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest/tree/OS3.0.5.0.VNQMIXM) branch of android_kernel_xiaomi_gold_manifest shows they give stock's modules and stock's DTB, byte for byte. The DTBO and the proprietary files are from Xiaomi's stock package; which one and how to check the files against it is in the READMEs of [android_device_xiaomi_gold-kernels](https://github.com/Star-caorui/android_device_xiaomi_gold-kernels/tree/lineage-24.0#readme) and [android_vendor_xiaomi_gold](https://github.com/Star-caorui/android_vendor_xiaomi_gold/tree/lineage-24.0#readme); the second also shows how to make its files yourself.
+The kernel image and the GKI modules are Google's builds. The vendor modules, the device tree blob and its overlay are built from source; the [`OS3.0.5.0.VNQMIXM`](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest/tree/OS3.0.5.0.VNQMIXM) branch of android_kernel_xiaomi_gold_manifest shows they give stock's modules, DTB and DTBO, byte for byte. The proprietary files are from Xiaomi's stock package; which one, how to check the files against it and how to make them yourself is in the README of [android_vendor_xiaomi_gold](https://github.com/Star-caorui/android_vendor_xiaomi_gold/tree/lineage-24.0#readme).
