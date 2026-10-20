@@ -22,7 +22,8 @@ repo init -u https://github.com/LineageOS/android.git -b lineage-24.0 --git-lfs
 git clone -b lineage-24.0 https://github.com/Star-caorui/local_manifests .repo/local_manifests
 repo sync -c
 
-mkdir -p out-kernel/xiaomi_gold && touch out-kernel/xiaomi_gold/.out-dir
+mkdir -p out-kernel/xiaomi_gold/.repo && touch out-kernel/xiaomi_gold/.out-dir
+cp -R .repo/repo out-kernel/xiaomi_gold/.repo/repo
 (cd out-kernel/xiaomi_gold &&
   repo init -u https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest -b lineage-24.0 --depth=1 --no-use-superproject &&
   repo sync -c --no-tags)
@@ -35,7 +36,7 @@ m bacon
 
 The output is in `out/target/product/gold/`.
 
-The kernel is built as for LineageOS's lamu: `breakfast` runs `build_kernel`, which runs [android_kernel_xiaomi_gold_manifest](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest/tree/lineage-24.0#readme)'s Kleaf build in `out-kernel/xiaomi_gold` and puts it into `device/xiaomi/gold-kernels`. It syncs only the kernel manifests LineageOS hosts, so this one is synced by hand, as above, and `SKIP_KERNEL_SYNC=1` keeps it from trying; after a sync there (`repo sync -c --no-tags`), `build_kernel` builds it again. It needs to reach `android.googlesource.com`, `github.com` and `ci.android.com`.
+The kernel is built as for LineageOS's lamu: `breakfast` runs `build_kernel`, which runs [android_kernel_xiaomi_gold_manifest](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest/tree/lineage-24.0#readme)'s Kleaf build in `out-kernel/xiaomi_gold` and puts it into `device/xiaomi/gold-kernels`. It syncs only the kernel manifests LineageOS hosts, so this one is synced by hand, as above (in a `.repo` of its own, as `build_kernel` makes it, or `repo init` finds the Android tree's and initialises that), and `SKIP_KERNEL_SYNC=1` keeps it from trying; after a sync there (`repo sync -c --no-tags`), `build_kernel` builds it again. It needs to reach `android.googlesource.com`, `github.com` and `ci.android.com`.
 
 ## Choosing the kernel
 
