@@ -22,7 +22,12 @@ repo init -u https://github.com/LineageOS/android.git -b lineage-24.0 --git-lfs
 git clone -b lineage-24.0 https://github.com/Star-caorui/local_manifests .repo/local_manifests
 repo sync -c
 
-device/xiaomi/gold/build-kernel.sh
+mkdir -p out-kernel/xiaomi_gold && touch out-kernel/xiaomi_gold/.out-dir
+(cd out-kernel/xiaomi_gold &&
+  repo init -u https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest -b lineage-24.0 --depth=1 --no-use-superproject &&
+  repo sync -c --no-tags)
+
+export SKIP_KERNEL_SYNC=1
 source build/envsetup.sh
 breakfast gold userdebug
 m bacon
@@ -30,14 +35,14 @@ m bacon
 
 The output is in `out/target/product/gold/`.
 
-`build-kernel.sh` builds the vendor kernel modules, the device tree blob and its overlay from source and fetches Google's GKI builds, as LineageOS's `build_kernel` does for the devices whose kernel manifests it hosts: it syncs [android_kernel_xiaomi_gold_manifest](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest#readme) into `out-kernel/gold` and puts the result into `device/xiaomi/gold-kernels`. Run it again after a sync, before building; `SKIP_KERNEL_SYNC=1` builds without syncing the kernel sources first. It needs to reach `android.googlesource.com` and `ci.android.com`.
+The kernel is built as for LineageOS's lamu: `breakfast` runs `build_kernel`, which runs [android_kernel_xiaomi_gold_manifest](https://github.com/Star-caorui/android_kernel_xiaomi_gold_manifest/tree/lineage-24.0#readme)'s Kleaf build in `out-kernel/xiaomi_gold` and puts it into `device/xiaomi/gold-kernels`. It syncs only the kernel manifests LineageOS hosts, so this one is synced by hand, as above, and `SKIP_KERNEL_SYNC=1` keeps it from trying; after a sync there (`repo sync -c --no-tags`), `build_kernel` builds it again. It needs to reach `android.googlesource.com`, `github.com` and `ci.android.com`.
 
 ## Choosing the kernel
 
-Releases use the GKI build stock ships. `GOLD_GKI=latest` picks Google's newest build of the same KMI generation instead, for testing; the vendor modules are the same:
+Releases use the GKI build stock ships, 15511674. `GKI_BUILD` picks another of the same KMI generation from the kernel manifest's `gki.sha256`, for testing; the vendor modules are the same:
 
 ```sh
-export GOLD_GKI=latest
+export GKI_BUILD=16498190 SKIP_KERNEL_SYNC=1
 source build/envsetup.sh
 breakfast gold userdebug
 m bacon
