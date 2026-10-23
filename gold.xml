@@ -9,6 +9,12 @@
   <project name="LineageOS/android_hardware_mediatek" path="hardware/mediatek" />
   <project name="LineageOS/android_hardware_xiaomi" path="hardware/xiaomi" />
 
+  <!-- fenrir LK compatibility; Android 17 split fs_mgr out of system/core. -->
+  <remove-project name="LineageOS/android_system_core" />
+  <project name="android_system_core" path="system/core" remote="gold" revision="lineage-24.0-fenrir" groups="pdk" />
+  <remove-project name="LineageOS/android_system_fs_fs_mgr" />
+  <project name="android_system_fs_fs_mgr" path="system/fs/fs_mgr" remote="gold" revision="lineage-24.0-fenrir" groups="pdk" />
+
   <!-- LineageOS changes under review, carried until they are merged: Gerrit 508379, 508380 and 508408 -->
   <remove-project name="LineageOS/android_lineage-sdk" />
   <project name="android_lineage-sdk" path="lineage-sdk" remote="gold" revision="lineage-24.0" />

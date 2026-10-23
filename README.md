@@ -13,6 +13,8 @@ Releases, and what works on them, are in [lineageos-gold](https://github.com/Sta
 | `device/mediatek/sepolicy_vndr`, `hardware/mediatek`, `hardware/xiaomi` | LineageOS |
 | `lineage-sdk`, `packages/apps/Updater`, `packages/modules/Bluetooth` | LineageOS's, with one change each that is under review on LineageOS's Gerrit ([508379](https://review.lineageos.org/c/LineageOS/android_lineage-sdk/+/508379), [508380](https://review.lineageos.org/c/LineageOS/android_packages_apps_Updater/+/508380), [508408](https://review.lineageos.org/c/LineageOS/android_packages_modules_Bluetooth/+/508408)), from our forks until it is merged |
 
+The manifest also selects our `lineage-24.0-fenrir` branches for `system/core` and `system/fs/fs_mgr` (split out of core in Android 17). They carry Mashopy's fenrir LK compatibility patches from Nothing-2A: [libfs_avb](https://github.com/Nothing-2A/android_system_core/commit/8ff6e7a68523c3b870d8dcd5713c71ea15b43dd2) treats both `orange` and `green` verified boot states as unlocked; [fastbootd](https://github.com/Nothing-2A/android_system_core/commit/0d5990a96c5e6a404887f5575c5d00bcbbaaef74) always reports the device as unlocked internally. These relax lock checks, including on genuinely locked devices; they do not make relocking safe. Not yet build- or device-tested on gold.
+
 ## Building
 
 You need `repo` and `git-lfs`, plus the usual [LineageOS build dependencies](https://wiki.lineageos.org/devices/).
