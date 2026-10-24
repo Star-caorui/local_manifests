@@ -5,25 +5,15 @@
   <project name="android_device_xiaomi_gold" path="device/xiaomi/gold" remote="gold" revision="lineage-24.0" />
   <project name="android_vendor_xiaomi_gold" path="vendor/xiaomi/gold" remote="gold" revision="lineage-24.0" clone-depth="1" />
 
-  <project name="LineageOS/android_device_mediatek_sepolicy_vndr" path="device/mediatek/sepolicy_vndr" />
-  <project name="LineageOS/android_hardware_mediatek" path="hardware/mediatek" />
-  <project name="LineageOS/android_hardware_xiaomi" path="hardware/xiaomi" />
+  <project name="LineageOS/android_device_mediatek_sepolicy_vndr" path="device/mediatek/sepolicy_vndr" remote="lineageos" />
+  <project name="LineageOS/android_hardware_mediatek" path="hardware/mediatek" remote="lineageos" />
+  <project name="LineageOS/android_hardware_xiaomi" path="hardware/xiaomi" remote="lineageos" />
 
-  <!-- fenrir LK compatibility; Android 17 split fs_mgr out of system/core. -->
-  <remove-project name="LineageOS/android_system_core" />
-  <project name="android_system_core" path="system/core" remote="gold" revision="lineage-24.0-fenrir" groups="pdk" />
-  <remove-project name="LineageOS/android_system_fs_fs_mgr" />
-  <project name="android_system_fs_fs_mgr" path="system/fs/fs_mgr" remote="gold" revision="lineage-24.0-fenrir" groups="pdk" />
+  <!-- fenrir LK compatibility in libfs_avb; PixelOS's fastbootd already handles fenrir=true. -->
+  <remove-project name="PixelOS-AOSP/android_system_fs_fs_mgr" />
+  <project name="android_system_fs_fs_mgr" path="system/fs/fs_mgr" remote="gold" revision="seventeen-fenrir" groups="pdk" />
 
-  <!-- LineageOS changes under review, carried until they are merged: Gerrit 508379, 508380 and 508408 -->
-  <remove-project name="LineageOS/android_lineage-sdk" />
-  <project name="android_lineage-sdk" path="lineage-sdk" remote="gold" revision="lineage-24.0" />
-  <remove-project name="LineageOS/android_packages_apps_Updater" />
-  <project name="android_packages_apps_Updater" path="packages/apps/Updater" remote="gold" revision="lineage-24.0" />
-  <remove-project name="LineageOS/android_packages_modules_Bluetooth" />
-  <project name="android_packages_modules_Bluetooth" path="packages/modules/Bluetooth" remote="gold" revision="lineage-24.0" groups="pdk" />
-
-  <!-- Setup wizard: stop looking up Google's missing partner provider on every call; not sent upstream yet. -->
-  <remove-project name="LineageOS/android_external_setupcompat" />
-  <project name="android_external_setupcompat" path="external/setupcompat" remote="gold" revision="lineage-24.0" groups="pdk,sysui-studio" />
+  <!-- LineageOS Gerrit 508408 (A2DP audio context), on PixelOS's Bluetooth until it is merged -->
+  <remove-project name="PixelOS-AOSP/android_packages_modules_Bluetooth" />
+  <project name="android_packages_modules_Bluetooth" path="packages/modules/Bluetooth" remote="gold" revision="seventeen" groups="pdk" />
 </manifest>
