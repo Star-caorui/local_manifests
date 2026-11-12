@@ -9,7 +9,7 @@ Releases, and what works on them, are in [lineageos-gold](https://github.com/Sta
 | Path | Repository |
 | --- | --- |
 | `device/xiaomi/gold` | the [device tree](https://github.com/Star-caorui/android_device_xiaomi_gold/tree/lineage-23.2) |
-| `device/xiaomi/gold-kernel` | the [stock kernel and its modules](https://github.com/Star-caorui/android_device_xiaomi_gold-kernels/tree/lineage-23.2), prebuilt |
+| `device/xiaomi/gold-kernel` | the kernel, prebuilt: a tag of [android_kernel_xiaomi_gold](https://github.com/Star-caorui/android_kernel_xiaomi_gold/tree/release)'s `release` branch, the one lineage-24.0 takes |
 | `vendor/xiaomi/gold` | the [proprietary files](https://github.com/Star-caorui/android_vendor_xiaomi_gold/tree/lineage-23.2) |
 | `device/mediatek/sepolicy_vndr`, `hardware/mediatek`, `hardware/xiaomi` | LineageOS |
 
@@ -31,7 +31,7 @@ The output is in `out/target/product/gold/`.
 
 ## Where the kernel and the proprietary files come from
 
-From Xiaomi's stock package. Which one, how to check the files against it and how to make them yourself is in the READMEs of [android_device_xiaomi_gold-kernels](https://github.com/Star-caorui/android_device_xiaomi_gold-kernels/tree/lineage-23.2#readme) and [android_vendor_xiaomi_gold](https://github.com/Star-caorui/android_vendor_xiaomi_gold/tree/lineage-23.2#readme).
+The kernel is built by android_kernel_xiaomi_gold's Release workflow; its [release branch's README](https://github.com/Star-caorui/android_kernel_xiaomi_gold/tree/release#readme) says from what. The proprietary files are from Xiaomi's stock package: which one, how to check the files against it and how to make them yourself is in the README of [android_vendor_xiaomi_gold](https://github.com/Star-caorui/android_vendor_xiaomi_gold/tree/lineage-23.2#readme).
 
 ## Build hosts with little RAM
 
